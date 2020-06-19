@@ -1,0 +1,39 @@
+= SpringOne Platform
+Pivotal
+Stéphane Nicoll @snicoll
+Brian Clozel @bclozel
+
+== Retour sur SpringOne
+Tout est sur Youtube
+
+=== Keynotes
+* Netflix back to SpringBoot (no more home framework)
+* Dick's Sporting good (kill -9 du serveur en prod)
+* Pivotal Spring Runtime
+
+=== Breakout sessions
+
+=== Jeton valeurs faciales
+
+== Spring Boot 2.2
+* Support de Java 13
+* Dependency management upgrades
+** ElasticSearch
+** Flyweight
+* Features
+** SpringData documentation and ElasticSearch, support http
+** Spring Banner
+** SpringBoot 2.2
+*** Immutable @ConfigurationProperties + @DefaultValue() in constructor + @ConstructorBinding
+*** Health indicator groups
+*** Junit 5 par défaut
+
+== start.spring.io update
+
+== Performance improvements
+* Startup time de springboot (JMS, Tomcat, Core framework...)
+** Lazy Initialization, en option (pénalité à la première requête qui nécessite la requête, mais pratique pour le stests d'intégration)
+* Runtime Performance
+** Spring MVC, Webflux, Netty
+* GraalVM
+** spring-graal-native

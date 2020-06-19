@@ -1,0 +1,57 @@
+= JUnit 5
+
+== Modules
+junit-vintage-engine
+junit-jupiter -> nouveau !
+junit-platform -> pas nécessaire (car transitif via les deux autres)
+dependance à surefire-plugin >=2.22
+---
+jupiter (5ème planète du système solaire)
+---
+
+== Annotations Changent
+@Before/AfterClass -> @Before/AfterAll
+@Before/After -> @Before/AfterEach
+@Ignore -> @Disabled
+
+== API changes
+Assert -> Assertions
+Rule pour gérer les exceptions n'existent plus -> Remplacées par Assertions.assertThrows
+Assertions.assertAll
+
+== Test Paramétrés
+Test parametrés : @Test -> @ParametrizedTest +
+  @ValueSource et @NullSource @NullAndEmptySource
+  @CsvSource
+  @CsvFileSource
+  @MethodSource methode retournant de stream d'argument
+
+== Nommage des tests
+@DisplayName pour parametre les noms affichés
+@ParameterizedTest name attribute avec templating pour le nom
+@DisplayNameGeneration pour généraliser la stratégie de nommage à une classe
+@argline in surefire pour généraliser à tous le projet
+
+== Héritage de test et de setups
+
+=== Depuis une interface
+Tests définis dans une interface sont appliqués à l'implémentation de cette classe
+
+=== Depuis une classe englobante
+@Nested permet de faire des sous-cas de tests dans une nested class
+
+== Extensions
+@ExtendWith remplace les @Runner externes (SpringExtension vs RunWith(SpringRunner))
+Il n'y a plus de runners
+Plein d'extensions déjà disponible
+
+== Ordonnancement des tests
+@TestMethodOrder + @Order(1) pour ordonner les tests (pas recommandé pour des tests purement unitaire, mais utilisable pour des test d'inté ou end to end)
+
+== ParameterResolver
+@Autowired sur les arguments de methodes de tests -> concepts de parameterResolver
+implements ParameterResolver pour @ExtendsWith
+    * supportsParameter
+    * resolveParameter
+ParameterResolver peut prendre en compte le contexte y compris des annotations que l'on aurait ajouté nous mêmes (cas d'invalid input)
+on peut présenter l'ensemble de extensions que l'on veut appliquer à partir d'un fichier dans no ressources et d'une option dans le surefire argline

@@ -1,0 +1,44 @@
+= Architecture Hexagonale
+Comment bien écrire ses tests
+Level 2
+
+== Isolation de la logique métier des frameworks externes
+adapters avec les bdd, les services clients, services fournisseurs
+fourni une API pour les outils tels que les controlleurs RESTs
+
+== Pyramide de tests adaptées au microservices
+image prise sur le blog de MartinFowler
+
+== TalkAdvisor
+appli kotlin SpringBoot
+endpoint profiles pour créer des profiles
+endpoint recommendations qui envoit des id de vidéos youtube correspondant aux interets
+
+== Functional Tests
+on teste pas le code hors du domaine
+Cucumber par exemple
+feature files dans le domaine
+usage d'implémentation spécifiques aux tests pour représenter la persistence, les services clients, fournisseurs
+
+!! encapsuler les critère d'acceptance dans des customs assertions
+de cette manière on peut utiliser ces assertions pour valider les invariants des entités du domaine métiers
+!! cucumber recommande d'encapsuler coté tests les StepDefinition dans des fichiers réutilisés pour de la logique métiers
+!! gérer les contexte avec cucumber (utilisation de pico (frameworl d'injection de dépendances ultra-light))
+générateur d'objet métier (kind of factories) pour la génération d'objets valides randoms
+inline des implémentations pour les tests qui ont besoin de vérifier les contenus des résultats
+
+ == Integration Tests (Contract Test)
+ Spring Rest Doc - conccurence à Swagger
+ Générateur de documentation directement à partir de la description des cas d'usage (au lieu d'annotations sur le endpoint)
+ Accessoirement le générateur de docs plante nos tests au cas ou certains chanmps ne sont pas documenté, ou inconnus
+
+ Spring cloud verifier -> vérifie que le contrat d'api n'est pas cassé (via une définition Groovy)
+Génère un test pour nous et un stub de notre API qui respecte ce contrat
+
+== Component & end-to-end tests
+On ne vérifie les fonctionnalité .... on vérifie juste
+Karate DSL -> Gherkin pour les REST api
+Karate  permet de rappeler les request déjà existantes
+Karate permet donc de définir des tests end-to-end (annotaton @e2e)
+
+ne pas tester en end-to-end ce que l'on fait déjà en tests unitaires

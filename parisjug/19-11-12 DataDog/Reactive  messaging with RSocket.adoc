@@ -1,0 +1,34 @@
+= RSocket
+concept de BackPressure
+
+RSocket permet de transmettre le backpressure JVM, buffer TCP
+Reactive Streams Spec multilangage
+Projet Reactor - ReactorNetty chez Pivotal
+Protocole Facebook, Ntflix, Pivotal, Alibaba
+
+== vs HTTP
+* buffer TCP
+* application protocol for multiplex, duplex communication
+* != WebSocket ? Oui ! il faut ajouter Protocole de messaging (Stomp, ...)
+
+== RSocket proptocole on top of TCP/ UDP/ WebSocket / ...
+
+== 4 interaction models
+* request response
+* request stream
+* request channel
+* request fire and forget
+requester <-> responder
+=== Support de reactive streams
+Back pressure via des frames précisant la capacité de charge
+=== Session/Stream resumption
+Changement de type de connection 3G/4G par exemple
+Resume frame
+=== Leasing
+request throttling with Lease
+=== Fragmentation & reassembly
+=== Heartbeats
+
+== support Spring boot
+=== Airport Radar
+"Radar Collector Service" -- "Flight Tracker"
